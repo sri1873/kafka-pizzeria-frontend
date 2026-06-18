@@ -1,5 +1,5 @@
-import Card from './Card';
-import { useState } from "react";
+import Card from '../Components/Card';
+import { useState, useEffect } from "react";
 
 const HomePage = () => {
 
@@ -10,10 +10,27 @@ const HomePage = () => {
         setToast(message);
         setTimeout(() => setToast(null), 4000);
     };
-
+    useEffect(() => {
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        window.dispatchEvent(new Event('cartUpdated'));
+    }, [cart]);
 
     const handleAddToCart = (pizza) => {
-        setCart(prev => [...prev, pizza]);
+        const existing = cart.find(c => `${c.name}-${c.size}` === `${pizza.name}-${pizza.size}`);
+
+        let updated;
+        if (existing) {
+            updated = cart.map(c =>
+                `${c.name}-${c.size}` === `${pizza.name}-${pizza.size}`
+                    ? { ...c, quantity: c.quantity + 1 }
+                    : c
+            );
+        } else {
+            updated = [...cart, { ...pizza, quantity: 1 }];
+        }
+
+        setCart(updated);
+        sessionStorage.setItem('cart', JSON.stringify(updated));
         showToast(`${pizza.name} added to cart!`);
     };
 

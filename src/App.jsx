@@ -5,6 +5,7 @@ import RestaurantDashboard from "./pages/RestaurantDashboard";
 import RiderDashboard from "./pages/RiderDashboard";
 import HomePage from "./pages/HomePage";
 import NavBar from "./pages/NavBar";
+import CartPage from "./pages/CartPage";
 
 const ProtectedRoute = ({ children, role }) => {
   const storedRole = localStorage.getItem("role");
@@ -20,7 +21,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Login />} />
 
-        <Route path="/customer" element={
+        <Route path="/order-status" element={
           <ProtectedRoute role="customer">
             <CustomerDashboard />
           </ProtectedRoute>
@@ -28,6 +29,11 @@ export default function App() {
         <Route path="/home" element={
           <ProtectedRoute role="customer">
             <HomePage />
+          </ProtectedRoute>
+        } />
+        <Route path="/cart" element={
+          <ProtectedRoute role="customer">
+            <CartPage />
           </ProtectedRoute>
         } />
 

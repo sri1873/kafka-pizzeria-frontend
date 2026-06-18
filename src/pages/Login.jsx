@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-    const navigate = useNavigate();
+    c
 
     const login = (role) => {
         localStorage.setItem("role", role);

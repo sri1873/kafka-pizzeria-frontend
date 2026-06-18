@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export function useSSE(userId) {
-    const [notification, setNotification] = useState(null);
+    const [notification, setNotification] = useState([]);
 
     useEffect(() => {
         if (!userId) return;
@@ -12,7 +12,7 @@ export function useSSE(userId) {
         );
 
         es.addEventListener("order-update", (e) => {
-            setNotification(JSON.parse(e.data));
+            setNotification(prev => [...prev, JSON.parse(e.data)]);
         });
 
         return () => es.close();
