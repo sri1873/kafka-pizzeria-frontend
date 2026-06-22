@@ -1,29 +1,29 @@
-import { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; 
 
-const Checkout = ({ cart }) => { 
+const Checkout = ({ cart }) => {
 
     const navigate = useNavigate();
     const placeOrder = (cart) => {
         const orderDetails = {
             userId: localStorage.getItem("userId"),
-            desitination: "",
+            de̥sitinati̥on: "",
             deliveryAddress: "",
             items: cart.map(item => ({
                 item: item.name,
                 quantity: item.quantity
             }))
         };
-        axios.post('http://localhost:8080/order', orderDetails).then(response => {
+        axios.post('http://localhost:8080/restaurant/placeorder', orderDetails).then(response => {
             console.log("Order placed successfully:", response.data);
             sessionStorage.removeItem('cart');
-            window.dispatchEvent(new Event('cartUpdated'));
+            globalThis.dispatchEvent(new Event('cartUpdated'));
             navigate('/order-status');
         }).catch(error => {
             console.error("Error placing order:", error);
         }
-        );};
+        );
+    };
 
     return (
         <div className="checkout p-8 border-2 rounded-2xl h-1/2 ">
@@ -34,8 +34,8 @@ const Checkout = ({ cart }) => {
                 </p>
                 <button className="mt-4 px-4 py-2 cursor-pointer bg-[#CF2101] text-white rounded-lg hover:bg-[#a71c01] transition-colors"
                     onClick={(e) => placeOrder(cart)}>
-                Place Order
-            </button>
+                    Place Order
+                </button>
             </div>
         </div>
 

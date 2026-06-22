@@ -1,4 +1,3 @@
-import React from "react";
 
 const pizzaData = [
     {
@@ -84,25 +83,23 @@ const pizzaData = [
     },
 ];
 export default function Card({ handleAddToCart }) {
-  return <div className="cards pizza-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
-                {pizzaData.map((pizza, index) => <div key={index} className="pizza-item shadow-xl cursor-pointer rounded-2xl bg-amber-100 drop-shadow-black p-4 mb-4 w-fit text-left">
-                        <img src={pizza.imageUrl} alt={pizza.name} className=" h-64  mb-4" />
-                        <h2 className="text-xl font-bold mb-2">{pizza.name}</h2>
-                        <p className="text-gray-600 mb-2">{pizza.size}</p>
-                        <div className="allergens flex gap-2 mb-2">
-                            {pizza.allergens.map((allergen, allergenIndex) => <p key={allergenIndex} className="text-black-500 pl-4 pr-4 text-xs rounded-full bg-amber-500 p-2">{allergen}</p>)}
-                        </div>
-                        <p className="text-gray-600 text-sm mb-2">{pizza.ingredients}</p>
-                        <div className="price-cart flex justify-between">
-                            <p className="text-lg font-bold">€{pizza.price.toFixed(2)}</p>
-                            <button className="bg-[#CF2101] cursor-pointer text-white font-bold px-4 py-2 rounded-xl" onClick={() => handleAddToCart(pizza)}>
-                                ADD
-                                <i className="fa-solid fa-cart-arrow-down text-xl pl-2"></i>
-                            </button>
+    return <div className="cards pizza-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+        {pizzaData.map((pizza) => <div key={pizza.name} className="pizza-item shadow-xl cursor-pointer rounded-2xl bg-amber-100 drop-shadow-black p-4 mb-4 w-fit text-left">
+            <img src={pizza.imageUrl} alt={pizza.name} className=" h-64  mb-4" />
+            <h2 className="text-xl font-bold mb-2">{pizza.name}</h2>
+            <p className="text-gray-600 mb-2">{pizza.size}</p>
+            <div className="allergens flex gap-2 mb-2">
+                {pizza.allergens.map((allergen) => <p key={allergen} className="text-black-500 pl-4 pr-4 text-xs rounded-full bg-amber-500 p-2">{allergen}</p>)}
+            </div>
+            <p className="text-gray-600 text-sm mb-2">{pizza.ingredients}</p>
+            <div className="price-cart flex justify-between">
+                <p className="text-lg font-bold">€{pizza.price.toFixed(2)}</p>
+                <button className="bg-[#CF2101] cursor-pointer text-white font-bold px-4 py-2 rounded-xl" onClick={() => handleAddToCart(pizza)}>
+                    ADD<i className="fa-solid fa-cart-arrow-down text-xl pl-2"></i>
+                </button>
 
-                        </div>
+            </div>
 
-                    </div>)}
-            </div>;
+        </div>)}
+    </div>;
 }
-  

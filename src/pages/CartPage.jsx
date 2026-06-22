@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import { useEffect, useState } from "react";
 import Cart from "../Components/Cart";
 import Checkout from "../Components/Checkout";
 
@@ -20,10 +20,10 @@ const CartPage = () => {
                 <p>Your cart is empty.</p>
             </div>
         ) : (
-        <div className="cart-page p-12 h-screen border-2 flex flex-row gap-4 justify-around items-start">
-            <Cart cart={cart} setCart={setCart} />
-            <Checkout cart={cart} />
-        </div>
-    ));
+            <div className="cart-page p-12 h-screen border-2 flex flex-row gap-4 justify-around items-start">
+                <Cart cart={cart} setCart={setCart} />
+                <Checkout cart={cart} />
+            </div>
+        ));
 }
 export default CartPage;

@@ -1,14 +1,13 @@
 // hooks/useSSE.js
 import { useEffect, useState } from "react";
 
-export function useSSE(userId) {
+export function useSSE(userId, url) {
     const [notification, setNotification] = useState([]);
-
     useEffect(() => {
         if (!userId) return;
 
         const es = new EventSource(
-            `http://localhost:8080/subscribe/${userId}`
+            `${url}/${userId}`
         );
 
         es.addEventListener("order-update", (e) => {

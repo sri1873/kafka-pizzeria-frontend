@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 const NavBar = () => {
@@ -28,10 +28,10 @@ const NavBar = () => {
             </span>
             <button className="flex h-fit items-center gap-2 px-4 py-2 cursor-pointer
                         text-[#CF2101] text-sm font-medium"
-            onClick={() => navigate('/cart')}
+                onClick={() => navigate('/cart')}
             >
                 <i className="fa-solid fa-cart-shopping text-base" aria-hidden="true" />
-                <span>Cart</span>   
+                <span>Cart</span>
                 {cartCount > 0 && (
                     <span className="bg-white text-[#CF2101] text-xs font-medium
                          rounded-full px-2 py-0.5 min-w-5 text-center">

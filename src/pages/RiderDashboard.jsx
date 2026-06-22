@@ -1,8 +1,8 @@
 const RiderDashboard = () => {
   return (
-      <div>
-      </div>
-    );
+    <div>
+    </div>
+  );
 }
 
 export default RiderDashboard;

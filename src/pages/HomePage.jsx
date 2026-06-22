@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import Card from '../Components/Card';
-import { useState, useEffect } from "react";
 
 const HomePage = () => {
 
@@ -12,7 +12,7 @@ const HomePage = () => {
     };
     useEffect(() => {
         sessionStorage.setItem('cart', JSON.stringify(cart));
-        window.dispatchEvent(new Event('cartUpdated'));
+        globalThis.dispatchEvent(new Event('cartUpdated'));
     }, [cart]);
 
     const handleAddToCart = (pizza) => {

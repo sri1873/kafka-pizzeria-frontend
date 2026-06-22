@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
-import CustomerDashboard from "./pages/CustomerDashboard";
-import RestaurantDashboard from "./pages/RestaurantDashboard";                                                                                                                                                                    
-import RiderDashboard from "./pages/RiderDashboard";
-import HomePage from "./pages/HomePage";
-import NavBar from "./pages/NavBar";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import CartPage from "./pages/CartPage";
+import CustomerDashboard from "./pages/CustomerDashboard";
+import HomePage from "./pages/HomePage";
+import Login from "./pages/Login";
+import NavBar from "./pages/NavBar";
+import RestaurantDashboard from "./pages/RestaurantDashboard";
+import RiderDashboard from "./pages/RiderDashboard";
 
 const ProtectedRoute = ({ children, role }) => {
   const storedRole = localStorage.getItem("role");
@@ -13,11 +13,11 @@ const ProtectedRoute = ({ children, role }) => {
   if (role && storedRole !== role) return <Navigate to={`/${storedRole}`} />;
   return children;
 };
-
 export default function App() {
+  const location = useLocation();
   return (
-    <BrowserRouter>
-      <NavBar />
+    <>
+      {location.pathname !== "/" && <NavBar />}
       <Routes>
         <Route path="/" element={<Login />} />
 
@@ -51,6 +51,6 @@ export default function App() {
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
